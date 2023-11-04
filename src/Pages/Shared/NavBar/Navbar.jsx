@@ -21,7 +21,7 @@ const Navbar = () => {
         <>
             <>
                 <li className="text-xl"><NavLink to={'/'}>Home</NavLink></li>
-                <li className="text-xl"><NavLink to={'/addProducts'}>Add Job</NavLink></li>
+                <li className="text-xl"><NavLink to={'/addJob'}>Add Job</NavLink></li>
                 <li className="text-xl"><NavLink to={'/cart'}>My Posted job</NavLink></li>
                 <li className="text-xl"><NavLink to={'/news'}>My bids</NavLink></li>
                 <li className="text-xl"><NavLink to={'/offers'}>Bid Request</NavLink></li>
