@@ -1,13 +1,58 @@
-import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FcBiotech, FcGoogle } from "react-icons/fc";
-import Swal from "sweetalert2";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+
     return (
         <div>
-            
+            <div className="hero min-h-screen py-10 bg-[#2C74B3]">
+                <div className="hero-content flex-col">
+                    <div >
+                        <img className="w-50 mx-auto" src={'https://i.ibb.co/QKSVWrJ/head-icon.png'} alt="https://i.ibb.co/QKSVWrJ/head-icon.png" />
+
+                    </div>
+                    <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-[#144272] py-10 lg:mx-10">
+                        <form className="card-body px-10">
+                            <h1 className="text-5xl font-bold text-center">Please Log In</h1>
+                            <div className="form-control ">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="email"
+                                    className="input input-bordered" required />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
+                                </label>
+                                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                                <label className="label">
+                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                </label>
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-[#2C74B3] hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">
+                                LogIn
+                            </button>
+                            <h1 className='font-normal text-sm'>Don`t Have an account? <span className='text-[#FF3811]'><Link to={'/signUp'}>Sign Up</Link></span></h1>
+                        </form>
+                        <div className="flex items-center space-x-4">
+                            <hr className="flex-grow border-gray-300" />
+                            <span className="text-xl">or</span>
+                            <hr className="flex-grow border-gray-300" />
+                        </div>
+                        <h2 className="text-center font-extrabold mb-2">Login With</h2>
+                        <div className="flex justify-center">
+                            <button className="btn btn-outline w-1/2"><FcGoogle></FcGoogle>Google</button>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

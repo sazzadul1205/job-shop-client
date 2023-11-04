@@ -13,14 +13,14 @@ const Navbar = () => {
                 <li className="text-xl"><NavLink to={'/cart'}>My Posted job</NavLink></li>
                 <li className="text-xl"><NavLink to={'/news'}>My bids</NavLink></li>
                 <li className="text-xl"><NavLink to={'/offers'}>Bid Request</NavLink></li>
-                <li className="text-xl"><NavLink to={'/offers'}>login</NavLink></li>
+                <li className="text-xl"><NavLink to={'/login'}>login</NavLink></li>
             </>
 
         </>
     );
 
     return (
-        <div className="mb-10">
+        <div>
             <div className="navbar bg-[#87C4FF] pt-4">
                 <div className="navbar-start">
                     <div className="dropdown">
