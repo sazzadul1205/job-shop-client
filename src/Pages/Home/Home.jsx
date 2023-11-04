@@ -20,8 +20,8 @@ const Home = () => {
     //     queryFn: getjobs
     // })
     
-    const jobs = getJobs()
-    console.log(jobs.object);
+    // const jobs = getJobs()
+    // console.log(jobs.object);
 
     return (
         <div>

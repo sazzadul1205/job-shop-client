@@ -3,13 +3,14 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user, singIn, signInWithGoogle } = useContext(AuthContext);
     const [loginError, setLoginError] = useState(null);
-
+    const axios = useAxios()
 
 
     const handleLogin = e => {
@@ -21,13 +22,31 @@ const Login = () => {
 
         singIn(email, password)
             .then(res => {
-                console.log(res.user);
-                navigate(location?.state ? location.state : '/')
                 const user = {
                     email: email,
                     lastLoggedAt: res.user?.metadata?.lastSignInTime,
                 };
-                console.log(user);
+                console.log(user.email);
+
+                axios.post('/auth/access-token', { email: user.email })
+                    .then(token => {
+                        navigate(location?.state ? location.state : '/')
+                        console.log(token);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Login successful!',
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        setLoginError("Failed to generate access token. Please try again.");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Failed to generate access token. Please try again.',
+                        });
+                    });
             })
             .catch(error => {
                 console.error(error);
@@ -35,19 +54,35 @@ const Login = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Invalid email or password. Please try again.'
+                    text: 'Invalid email or password. Please try again.',
                 });
-
-            })
-
-    }
-
+            });
+    };
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(res => {
-                console.log(res.user);
-                navigate(location?.state ? location.state : '/');
+                console.log(res.user.email);
+                // navigate(location?.state ? location.state : '/');
+                axios.post('/auth/access-token', { email: res.user.email })
+                    .then(token => {
+                        navigate(location?.state ? location.state : '/')
+                        console.log(token);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Login successful!',
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        setLoginError("Failed to generate access token. Please try again.");
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Failed to generate access token. Please try again.',
+                        });
+                    });
 
             })
             .catch(error => {
@@ -123,3 +158,4 @@ const Login = () => {
 };
 
 export default Login;
+

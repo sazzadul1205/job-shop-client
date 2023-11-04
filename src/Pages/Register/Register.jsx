@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
     const [passwordError, setPasswordError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
+    const axios = useAxios()
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -32,10 +34,29 @@ const Register = () => {
 
         createUser(email, password)
             .then((res) => {
-                console.log(res.user);
+                console.log(res.user.email);
+                axios.post('/auth/access-token', { email: res.user.email })
+                    .then(tokenResponse => {
+                        const token = tokenResponse.data;
+                        navigate(location?.state ? location.state : '/')
+                        console.log(token);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Login successful!',
+                        });
+                    })
+                    .catch(tokenError => {
+                        console.error(tokenError);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Failed to generate access token. Please try again.',
+                        });
+                    });
                 updateUser(displayName, photoURL)
-                    .then(res => {
-                        console.log(res);
+                    .then(updateResponse => {
+                        // console.log(res);
                         navigate(location?.state ? location.state : "/");
                         Swal.fire({
                             icon: 'success',
@@ -43,6 +64,16 @@ const Register = () => {
                             text: 'You have successfully registered an account!',
                         });
                     })
+                    .catch(updateError => {
+                        console.error(updateError);
+                        let updateErrorMessage = updateError.message;
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Registration Failed',
+                            text: updateErrorMessage,
+                        });
+                    });
             })
             .catch((error) => {
                 console.error('Error in registration:', error);
@@ -55,6 +86,7 @@ const Register = () => {
                 });
             });
     };
+
 
 
 
