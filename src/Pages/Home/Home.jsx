@@ -2,7 +2,13 @@
 const Home = () => {
     return (
         <div>
-            <h1>hello</h1>
+            {/* banner */}
+            <div>
+                <img src={'https://i.ibb.co/mJCjDGh/banner.png'} alt="" />
+            </div>
+            <div>
+                
+            </div>
         </div>
     );
 };
