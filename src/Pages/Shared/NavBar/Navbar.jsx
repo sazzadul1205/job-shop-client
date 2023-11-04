@@ -1,9 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
 
+    const handleSignOut = () => {
+        logOut()
+            .then(() => {
+                console.log("User signed out successfully.");
+            })
+            .catch(error => {
+                console.error("Error signing out:", error);
+            });
+    };
 
     const links = (
         <>
@@ -28,7 +40,7 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
-                            
+
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {links}
@@ -45,14 +57,14 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end flex gap-5">
-                    {/* {user ? (
+                    {user ? (
                         <>
                             <div className="avatar">
                                 <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src={user.photoURL || userPic} alt="User" />
+                                    <img src={user?.photoURL || 'https://i.ibb.co/bFhtZ8y/deafault.png'} alt="https://i.ibb.co/bFhtZ8y/deafault.png" />
                                 </div>
                             </div>
-                            <h2>{user.displayName}</h2>
+                            <h2>{user?.displayName}</h2>
                             <button className="btn btn-neutral" onClick={handleSignOut}>
                                 Log Out
                             </button>
@@ -61,7 +73,7 @@ const Navbar = () => {
                         <Link to="/login">
                             <button className="btn btn-neutral">Log In</button>
                         </Link>
-                    )} */}
+                    )}
                 </div>
             </div>
         </div>
