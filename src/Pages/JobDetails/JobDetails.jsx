@@ -18,6 +18,7 @@ const JobDetails = () => {
         const form = new FormData(e.currentTarget);
         const Bid = form.get('Bid');
         const bidderDeadline = form.get('bidderDeadline');
+        const status = 'In Progress'
 
         const bid = {
             Bid,
@@ -27,11 +28,11 @@ const JobDetails = () => {
             title,
             maxPrice,
             minPrice,
+            status,
         };
         console.log(bid);
-        const res = await axios.post('/api/v1/bids/add-new-bid', bid);
+        const res = await axios.post('/bids/add-new-bid', bid);
         console.log('Bid successfully sent', res?.data);
-
         if (res.status === 200) {
             Swal.fire({
                 icon: 'success',

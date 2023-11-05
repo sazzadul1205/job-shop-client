@@ -28,7 +28,6 @@ const MyJobCard = ({ job, refetch }) => {
                         'Your job has been deleted.',
                         'success'
                     );
-                    
                 }
             }
         });
