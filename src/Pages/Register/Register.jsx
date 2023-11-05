@@ -56,7 +56,7 @@ const Register = () => {
                     });
                 updateUser(displayName, photoURL)
                     .then(updateResponse => {
-                        // console.log(res);
+                        console.log(updateResponse);
                         navigate(location?.state ? location.state : "/");
                         Swal.fire({
                             icon: 'success',
