@@ -1,7 +1,7 @@
 
 const NotFound = () => {
     return (
-        <div>
+        <div className="w-[100vw]">
         <section>
             <div className="bg-[#87C4FF] text-white">
                 <div className="flex h-screen ">

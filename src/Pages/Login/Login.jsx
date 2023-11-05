@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
+document.title= 'Job Shop || LogIn'
 
 const Login = () => {
     const location = useLocation();

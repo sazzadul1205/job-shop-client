@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
+document.title= 'Job Shop || Update Jobs'
 
 const UpdateJobs = () => {
     const job = useLoaderData()
@@ -40,18 +41,18 @@ const UpdateJobs = () => {
         } else {
             setIsButtonDisabled(false);
         }
-        
+
         const res = await axios.put(`/jobs/${_id}`, updatedJob);
         console.log('Bid successfully sent', res?.data);
         if (res.status === 200) {
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
-                text: 'Your job has been successfully submitted.',
+                text: 'Your job has been successfully updated.',
+            }).then(() => {
+                history.goBack();
             });
         }
-
-        
     };
 
     const handleDeadlineChange = (e) => {

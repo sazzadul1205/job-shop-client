@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxios from "../../Hooks/useAxios";
+document.title= 'Job Shop || Sign UP'
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);

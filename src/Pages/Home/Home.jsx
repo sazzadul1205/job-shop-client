@@ -1,6 +1,7 @@
 import FAQ from './FAQ/FAq';
 import HowItWorks from './HowItWorks/HowItWorks';
 import Jobs from './Jobs/Jobs';
+document.title= 'Job Shop || Home'
 
 const Home = () => {
     return (

@@ -1,8 +1,39 @@
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
-const MyJobCard = ({ job, onDelete }) => {
+const MyJobCard = ({ job, refetch }) => {
+    const axios = useAxios();
     const { _id, title, deadline, description, maxPrice, minPrice } = job;
+
+    const onDelete = async (_id) => {
+        console.log(_id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axios.delete(`/jobs/${_id}`);
+                console.log('Job successfully deleted', res?.data);
+                if (res.status === 200) {
+                    refetch()   
+                    Swal.fire(
+                        'Deleted!',
+                        'Your job has been deleted.',
+                        'success'
+                    );
+                    
+                }
+            }
+        });
+    };
+
     return (
         <div className="m-10 p-6 bg-blue-800 rounded-xl flex justify-between items-center text-white">
             <div className="flex-1">
@@ -13,7 +44,7 @@ const MyJobCard = ({ job, onDelete }) => {
             </div>
             <div className="flex flex-col gap-4">
                 <Link to={`/updateJobs/${_id}`}>
-                    <button className="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded flex items-center">
+                    <button className="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-6 rounded flex items-center ">
                         <AiOutlineEdit className="mr-2" /> Edit
                     </button>
                 </Link>

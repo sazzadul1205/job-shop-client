@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import useAxios from '../../Hooks/useAxios';
 import Swal from 'sweetalert2';
+document.title= 'Job Shop || Job Details'
 
 const JobDetails = () => {
     const axios = useAxios();

@@ -4,7 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Loader/Loader";
 import MyJobCard from "./MyJobCard";
-import UpdateJobs from "../UpdateJobs/UpdateJobs";
+document.title= 'Job Shop || My Jobs'
 
 const MyJobs = () => {
     const axios = useAxios();
@@ -16,16 +16,7 @@ const MyJobs = () => {
         return res;
     };
 
-    // const handleEdit = (id) => {
-    //     console.log(`Edit button clicked for job with ID: ${id}`);
-    //     <UpdateJobs key={id}>{id}</UpdateJobs>
-    // };
-
-    const handleDelete = (id) => {
-        console.log(`Delete button clicked for job with ID: ${id}`);
-    };
-
-    const { data: jobs, isError, isLoading } = useQuery({
+    const { data: jobs, isError, isLoading, refetch } = useQuery({
         queryKey: ['jobs', user?.email],
         queryFn: getJobs,
     });
@@ -45,9 +36,9 @@ const MyJobs = () => {
                 {
                     jobs?.data.map(job => (
                         <MyJobCard
+                            refetch={refetch}
                             key={job._id}
                             job={job}
-                            onDelete={() => handleDelete(job._id)}
                         ></MyJobCard>
                     ))
                 }

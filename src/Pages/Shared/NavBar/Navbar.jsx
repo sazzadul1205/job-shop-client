@@ -23,7 +23,7 @@ const Navbar = () => {
                 <li className="text-md"><NavLink to={'/'}>Home</NavLink></li>
                 <li className="text-md"><NavLink to={'/addJob'}>Add Job</NavLink></li>
                 <li className="text-md"><NavLink to={'/myJobs'}>My Posted job</NavLink></li>
-                <li className="text-md"><NavLink to={'/news'}>My bids</NavLink></li>
+                <li className="text-md"><NavLink to={'/myBids'}>My bids</NavLink></li>
                 <li className="text-md"><NavLink to={'/offers'}>Bid Request</NavLink></li>
                 <li className="text-md"><NavLink to={'/login'}>login</NavLink></li>
             </>
