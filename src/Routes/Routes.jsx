@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        children:[
+        children: [
             {
                 path: '/',
                 element: <Home></Home>
@@ -32,17 +32,18 @@ const router = createBrowserRouter([
                 element: <AddJob></AddJob>
             },
             {
-                path:'/jobDetails/:id',
+                path: '/jobDetails/:id',
                 element: <JobDetails></JobDetails>,
-                loader:({params}) => fetch(`http://localhost:5000/api/v1/jobs/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/api/v1/jobs/${params.id}`)
             },
             {
-                path:'/myJobs',
+                path: '/myJobs',
                 element: <MyJobs></MyJobs>
             },
             {
-                path:'/updateJobs/:id',
-                element: <UpdateJobs></UpdateJobs>
+                path: '/updateJobs/:id',
+                element: <UpdateJobs></UpdateJobs>,
+                loader: ({ params }) => fetch(`http://localhost:5000/api/v1/jobs/${params.id}`)
             }
         ]
     },

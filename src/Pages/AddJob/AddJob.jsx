@@ -70,10 +70,6 @@ const AddJob = () => {
         } else {
             setIsButtonDisabled(false);
         }
-
-
-
-
     };
 
 
