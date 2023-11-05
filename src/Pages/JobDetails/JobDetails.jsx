@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import useAxios from '../../Hooks/useAxios';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 document.title = 'Job Shop || Job Details';
 
 const JobDetails = () => {
@@ -44,8 +45,13 @@ const JobDetails = () => {
             window.location.href = '/myBids'; 
         }
     };
+    const websiteName = 'Job Shop || Jobs Details';
     return (
         <div className='bg-[#2C74B3]'>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/jobdetails.png" />
+            </Helmet>
             <h1 className='text-center text-3xl font-bold italic pt-5'>~ Give your Bid ~</h1>
             {isSameEmail && (
                 <p className='text-[#2C74B3] bg-[#fa0a0a] text-center justify-center'>You can not bid on your own Job</p>

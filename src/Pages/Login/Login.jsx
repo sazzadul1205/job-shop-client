@@ -1,10 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { Helmet } from 'react-helmet';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
-document.title= 'Job Shop || LogIn'
+document.title = 'Job Shop || LogIn'
 
 const Login = () => {
     const location = useLocation();
@@ -31,8 +32,8 @@ const Login = () => {
 
                 axios.post('/auth/access-token', { email: user.email })
                     .then(token => {
-                        if (res.data.success) 
-                        navigate(location?.state ? location.state : '/')
+                        if (res.data.success)
+                            navigate(location?.state ? location.state : '/')
                         console.log(token);
                         Swal.fire({
                             icon: 'success',
@@ -49,7 +50,7 @@ const Login = () => {
                             text: 'Failed to generate access token. Please try again.',
                         });
                     });
-                    
+
             })
             .catch(error => {
                 console.error(error);
@@ -101,9 +102,14 @@ const Login = () => {
             });
     }
     console.log(user);
+    const websiteName = 'Job Shop || Login';
 
     return (
         <div className="pk">
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/login.png" />
+            </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col">
                     <div >

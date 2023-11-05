@@ -3,7 +3,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxios from "../../Hooks/useAxios";
-document.title= 'Job Shop || Sign UP'
+import { Helmet } from "react-helmet";
+document.title = 'Job Shop || Sign UP'
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
@@ -87,13 +88,14 @@ const Register = () => {
                 });
             });
     };
-
-
-
-
+    const websiteName = 'Job Shop || Register';
 
     return (
         <div>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/login.png" />
+            </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col">
                     <div >

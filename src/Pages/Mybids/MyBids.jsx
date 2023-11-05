@@ -5,6 +5,7 @@ import useAxios from '../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 
 const MyBids = () => {
     const axios = useAxios();
@@ -45,9 +46,13 @@ const MyBids = () => {
             })
         }
     };
-
+    const websiteName = 'Job Shop || My Bids';
     return (
         <div>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/myBid.png" />
+            </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">
                     <div>

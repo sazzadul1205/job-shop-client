@@ -4,7 +4,8 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Loader/Loader";
 import MyJobCard from "./MyJobCard";
-document.title= 'Job Shop || My Jobs'
+import { Helmet } from "react-helmet";
+document.title = 'Job Shop || My Jobs'
 
 const MyJobs = () => {
     const axios = useAxios();
@@ -28,9 +29,13 @@ const MyJobs = () => {
         return <h1 className="text-center text-3xl font-bold text-red-900">Something Went Wrong</h1>;
     }
     console.log(jobs?.data);
-
+    const websiteName = 'Job Shop || My Jobs';
     return (
         <div className="bg-[#2C74B3] min-h-screen">
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/myjobs.png" />
+            </Helmet>
             <h1 className="text-center text-3xl font bold pt-3">~ MyJobs ~</h1>
             <div className=" mt-5">
                 {

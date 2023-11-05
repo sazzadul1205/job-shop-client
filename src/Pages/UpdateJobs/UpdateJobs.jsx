@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
+import { Helmet } from "react-helmet";
 document.title= 'Job Shop || Update Jobs'
 
 const UpdateJobs = () => {
@@ -77,9 +78,13 @@ const UpdateJobs = () => {
     };
 
 
-
+    const websiteName = 'Job Shop || Update Jobs';
     return (
         <div>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/updateJobs.webp" />
+            </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">
                     <div>

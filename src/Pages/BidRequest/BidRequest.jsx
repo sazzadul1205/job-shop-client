@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loader from "../../Loader/Loader";
 import BidRequestRow from "./BidRequestRow";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const BidRequest = () => {
     const axios = useAxios();
@@ -72,9 +73,13 @@ const BidRequest = () => {
         }
     };
 
-
+    const websiteName = 'Job Shop || Bid Request';
     return (
         <div>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/bidRequest.jpeg" />
+            </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">
                     <div>

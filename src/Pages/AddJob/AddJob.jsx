@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet";
 document.title = 'Job Shop || Add Jobs'
 
 const AddJob = () => {
@@ -50,7 +51,7 @@ const AddJob = () => {
                 title: 'Success!',
                 text: 'Your job has been successfully submitted.',
             }).then(() => {
-                window.location.href = '/myJobs'; 
+                window.location.href = '/myJobs';
             });
         }
     };
@@ -75,10 +76,14 @@ const AddJob = () => {
             setIsButtonDisabled(false);
         }
     };
-
+    const websiteName = 'Job Shop || Add Job';
     console.log(isButtonDisabled);
     return (
         <div>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href="../../../public/addJobs.png" />
+            </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col lg:flex-row">
                     <div>
