@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import "react-step-progress-bar/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
 

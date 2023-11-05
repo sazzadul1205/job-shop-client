@@ -44,7 +44,7 @@ const MyJobCard = ({ job, refetch }) => {
             <div className="flex flex-col gap-4">
                 <Link to={`/updateJobs/${_id}`}>
                     <button className="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-6 rounded flex items-center ">
-                        <AiOutlineEdit className="mr-2" /> Edit
+                        <AiOutlineEdit className="mr-2" /> Update
                     </button>
                 </Link>
                 <button className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded flex items-center" onClick={() => onDelete(_id)}>

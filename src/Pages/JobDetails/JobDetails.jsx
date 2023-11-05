@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import useAxios from '../../Hooks/useAxios';
 import Swal from 'sweetalert2';
-document.title= 'Job Shop || Job Details'
+document.title = 'Job Shop || Job Details';
 
 const JobDetails = () => {
     const axios = useAxios();
@@ -12,13 +12,14 @@ const JobDetails = () => {
     const { email, title, deadline, description, maxPrice, minPrice } = services;
 
     const [isSameEmail, setIsSameEmail] = useState(user.email === email);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleBidSubmission = async (e) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const Bid = form.get('Bid');
         const bidderDeadline = form.get('bidderDeadline');
-        const status = 'pending'
+        const status = 'pending';
 
         const bid = {
             Bid,
@@ -39,14 +40,15 @@ const JobDetails = () => {
                 title: 'Success!',
                 text: 'Your bid has been successfully submitted.',
             });
+            setIsSubmitted(true);
+            window.location.href = '/myBids'; 
         }
     };
-
     return (
         <div className='bg-[#2C74B3]'>
             <h1 className='text-center text-3xl font-bold italic pt-5'>~ Give your Bid ~</h1>
             {isSameEmail && (
-                <p className='text-[#2C74B3] bg-[#fa0a0a] text-center justify-center'>You can not bid on your own project</p>
+                <p className='text-[#2C74B3] bg-[#fa0a0a] text-center justify-center'>You can not bid on your own Job</p>
             )}
             <div className=" flex flex-col lg:flex-row min-h-screen py-10 ">
 
@@ -94,11 +96,12 @@ const JobDetails = () => {
                                     <span className="label-text">Your Email</span>
                                 </label>
                                 <input
-                                    type="bidderEmail"
+                                    type="email"
                                     name="email"
                                     defaultValue={user.email}
                                     placeholder="Job Deadline"
                                     className="input input-bordered"
+                                    readOnly
                                 />
                             </div>
                             <div className="form-control">
@@ -106,13 +109,15 @@ const JobDetails = () => {
                                     <span className="label-text">Seller Email</span>
                                 </label>
                                 <input
-                                    type="sellerEmail"
+                                    type="email"
                                     name="email"
                                     defaultValue={email}
                                     placeholder="Job Deadline"
                                     className="input input-bordered"
+                                    readOnly
                                 />
                             </div>
+
                             <button
                                 type="submit"
                                 className={`w-full bg-[#2C74B3] hover:bg-blue-800 text-white font-bold py-2 px-4 rounded ${isSameEmail ? 'bg-gray-400 cursor-not-allowed' : ''}`}

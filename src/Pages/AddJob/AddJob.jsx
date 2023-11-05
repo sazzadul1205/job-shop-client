@@ -1,19 +1,17 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
-document.title= 'Job Shop || Add Jobs'
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+document.title = 'Job Shop || Add Jobs'
 
 const AddJob = () => {
     const axios = useAxios();
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     console.log(user?.email);
 
     const handleAddJob = async (e) => {
         e.preventDefault();
-
-
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
         const title = form.get('title');
@@ -32,7 +30,9 @@ const AddJob = () => {
             maxPrice,
             description,
         };
+
         console.log(job);
+
         if (parseInt(minPrice) > parseInt(maxPrice)) {
             setIsButtonDisabled(true);
             console.log("Minimum price cannot be higher than maximum price");
@@ -42,12 +42,15 @@ const AddJob = () => {
         }
 
         const res = await axios.post('/jobs/add-new-job', job);
-        console.log('Bid successfully sent', res?.data);
+        console.log('Job successfully sent', res?.data);
+
         if (res.status === 200) {
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
                 text: 'Your job has been successfully submitted.',
+            }).then(() => {
+                window.location.href = '/myJobs'; 
             });
         }
     };
@@ -73,9 +76,6 @@ const AddJob = () => {
         }
     };
 
-
-
-
     console.log(isButtonDisabled);
     return (
         <div>
@@ -98,6 +98,7 @@ const AddJob = () => {
                                     defaultValue={user?.email}
                                     className="input input-bordered"
                                     required
+                                    readOnly
                                 />
                             </div>
                             <div className="form-control">
