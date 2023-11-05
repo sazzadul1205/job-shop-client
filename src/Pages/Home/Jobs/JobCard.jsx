@@ -4,7 +4,7 @@ const JobCard = ({ job }) => {
     const { title, deadline, description, maxPrice, minPrice } = job;
 
     return (
-        <div className="max-w-md mx-auto bg-[#144272] rounded-xl shadow-md overflow-hidden m-4">
+        <div className="max-w-md mx-auto bg-[#144272] rounded-xl shadow-md overflow-hidden m-4 text-left">
             <div className="p-8">
                 <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-2">
                     {title}

@@ -8,7 +8,7 @@ import useAxios from "../../Hooks/useAxios";
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { user, singIn, signInWithGoogle } = useContext(AuthContext);
+    const { user, singIn, signInWithGoogle, logOut } = useContext(AuthContext);
     const [loginError, setLoginError] = useState(null);
     const axios = useAxios()
 
@@ -30,6 +30,7 @@ const Login = () => {
 
                 axios.post('/auth/access-token', { email: user.email })
                     .then(token => {
+                        if (res.data.success) 
                         navigate(location?.state ? location.state : '/')
                         console.log(token);
                         Swal.fire({
@@ -47,6 +48,7 @@ const Login = () => {
                             text: 'Failed to generate access token. Please try again.',
                         });
                     });
+                    
             })
             .catch(error => {
                 console.error(error);
@@ -76,6 +78,7 @@ const Login = () => {
                     })
                     .catch(error => {
                         console.error(error);
+                        logOut()
                         setLoginError("Failed to generate access token. Please try again.");
                         Swal.fire({
                             icon: 'error',
