@@ -102,7 +102,7 @@ const Login = () => {
     console.log(user);
 
     return (
-        <div>
+        <div className="pk">
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col">
                     <div >

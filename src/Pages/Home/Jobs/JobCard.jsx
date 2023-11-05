@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const JobCard = ({ job }) => {
-    const { title, deadline, description, maxPrice, minPrice } = job;
+    const { _id, title, deadline, description, maxPrice, minPrice } = job;
 
     return (
         <div className="max-w-md mx-auto bg-[#144272] rounded-xl shadow-md overflow-hidden m-4 text-left">
@@ -15,9 +16,11 @@ const JobCard = ({ job }) => {
                 </p>
                 <p className="text-gray-700 text-base">{description}</p>
                 <div className="mt-6">
-                    <button className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded">
-                        Bid Now
-                    </button>
+                    <Link to={`/jobDetails/${_id}`}>
+                        <button className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded">
+                            Bid Now
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

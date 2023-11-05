@@ -20,12 +20,12 @@ const Navbar = () => {
     const links = (
         <>
             <>
-                <li className="text-xl"><NavLink to={'/'}>Home</NavLink></li>
-                <li className="text-xl"><NavLink to={'/addJob'}>Add Job</NavLink></li>
-                <li className="text-xl"><NavLink to={'/cart'}>My Posted job</NavLink></li>
-                <li className="text-xl"><NavLink to={'/news'}>My bids</NavLink></li>
-                <li className="text-xl"><NavLink to={'/offers'}>Bid Request</NavLink></li>
-                <li className="text-xl"><NavLink to={'/login'}>login</NavLink></li>
+                <li className="text-md"><NavLink to={'/'}>Home</NavLink></li>
+                <li className="text-md"><NavLink to={'/addJob'}>Add Job</NavLink></li>
+                <li className="text-md"><NavLink to={'/cart'}>My Posted job</NavLink></li>
+                <li className="text-md"><NavLink to={'/news'}>My bids</NavLink></li>
+                <li className="text-md"><NavLink to={'/offers'}>Bid Request</NavLink></li>
+                <li className="text-md"><NavLink to={'/login'}>login</NavLink></li>
             </>
 
         </>
@@ -59,19 +59,19 @@ const Navbar = () => {
                 <div className="navbar-end flex gap-5">
                     {user ? (
                         <>
-                            <div className="avatar">
-                                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <div className="avatar flex-col">
+                                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 mx-auto">
                                     <img src={user?.photoURL || 'https://i.ibb.co/bFhtZ8y/deafault.png'} alt="https://i.ibb.co/bFhtZ8y/deafault.png" />
                                 </div>
+                                <h2 className="text-sm text-center">{user?.displayName}</h2>
                             </div>
-                            <h2>{user?.displayName}</h2>
-                            <button className="btn btn-neutral" onClick={handleSignOut}>
+                            <button className="btn btn-neutral text-[15px]" onClick={handleSignOut}>
                                 Log Out
                             </button>
                         </>
                     ) : (
                         <Link to="/login">
-                            <button className="btn btn-neutral">Log In</button>
+                            <button className="btn btn-neutral text-[15px] ">Log In</button>
                         </Link>
                     )}
                 </div>
