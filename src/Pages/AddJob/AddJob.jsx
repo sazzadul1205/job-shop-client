@@ -1,14 +1,17 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
 const AddJob = () => {
+    const axios = useAxios();
     const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const { user } = useContext(AuthContext)
     console.log(user?.email);
 
-    const handleAddJob = (e) => {
+    const handleAddJob = async (e) => {
         e.preventDefault();
-        
+
 
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
@@ -36,6 +39,16 @@ const AddJob = () => {
             setIsButtonDisabled(false);
             console.log(job);
         }
+
+        const res = await axios.post('/jobs/add-new-job', job);
+        console.log('Bid successfully sent', res?.data);
+        if (res.status === 200) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your job has been successfully submitted.',
+            });
+        }
     };
 
     const handleDeadlineChange = (e) => {
@@ -57,10 +70,14 @@ const AddJob = () => {
         } else {
             setIsButtonDisabled(false);
         }
+
+
+
+
     };
 
 
-    
+
 
     console.log(isButtonDisabled);
     return (
@@ -115,9 +132,9 @@ const AddJob = () => {
                                 </label>
                                 <select name="category" className="input input-bordered">
                                     <option value="">Select a category</option>
-                                    <option value="web-Development">Web Development</option>
-                                    <option value="digital-Marketing">Digital Marketing</option>
-                                    <option value="graphics-Design">Graphics Design</option>
+                                    <option value="Web-Development">Web Development</option>
+                                    <option value="Digital-Marketing">Digital Marketing</option>
+                                    <option value="Graphics-Design">Graphics Design</option>
                                 </select>
                             </div>
                             <div className="form-control">

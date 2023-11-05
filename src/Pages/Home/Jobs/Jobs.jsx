@@ -12,6 +12,7 @@ const Jobs = () => {
 
     const handleWDCategory = () => {
         setCategory('Web-Development');
+
     };
     const handleDMCategory = () => {
         setCategory('Digital-Marketing');
