@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import TableRow from './TableRow';
+import Loader from '../../Loader/Loader';
+import Swal from 'sweetalert2';
 import useAxios from '../../Hooks/useAxios';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../Providers/AuthProvider';
-import TableRow from './TableRow';
-import Loader from '../../Loader/Loader';
+import { useContext } from 'react';
 
 const MyBids = () => {
     const axios = useAxios();
@@ -11,14 +12,16 @@ const MyBids = () => {
     console.log(user.email);
 
     const getBids = async () => {
-        const res = await axios.get(`/bids?bidderEmail=${user.email}`);
+        const res = await axios.get(`/bids?bidderEmail=${user?.email}`);
         return res;
     };
 
     const { data: bids, isError, isLoading } = useQuery({
-        queryKey: ['jobs', user.email],
+        queryKey: ['bids', user.email, status],
         queryFn: getBids,
     });
+
+
     if (isLoading) {
         return <div className='mx-auto justify-center'><Loader /></div>;
     }
@@ -28,9 +31,19 @@ const MyBids = () => {
     const data = bids?.data;
     console.log(data);
 
-    const handleComplete = (id) => {
-        // Make the API call to update the status here
+    const handleComplete = async (id, updatedStatus) => {
         console.log('Job marked as complete:', id);
+        console.log(updatedStatus);
+
+        const res = await axios.put(`/bids/${id}`, updatedStatus);
+        console.log('Bid successfully sent', res?.data);
+        if (res.status === 200) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your job has been successfully updated.',
+            })
+        }
     };
 
     return (

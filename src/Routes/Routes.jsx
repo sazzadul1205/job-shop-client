@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import NotFound from "../Pages/NotFound/NotFound";
-import Home from "../Pages/Home/Home";
+import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register"
 import AddJob from "../Pages/AddJob/AddJob";
@@ -51,7 +51,12 @@ const router = createBrowserRouter([
                 path: '/myBids',
                 element: <PrivateRoutes><MyBids></MyBids></PrivateRoutes>
                 
-            }
+            },
+            {
+                path: '/bidRequest',
+                element: <PrivateRoutes><MyBids></MyBids></PrivateRoutes>
+                
+            },
         ]
     },
     {

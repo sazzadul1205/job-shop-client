@@ -18,7 +18,7 @@ const JobDetails = () => {
         const form = new FormData(e.currentTarget);
         const Bid = form.get('Bid');
         const bidderDeadline = form.get('bidderDeadline');
-        const status = 'In Progress'
+        const status = 'pending'
 
         const bid = {
             Bid,
