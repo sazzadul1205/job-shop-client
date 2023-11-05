@@ -35,7 +35,7 @@ const Jobs = () => {
         return <div className='mx-auto justify-center'><Loader /></div>;
     }
     if (isError) {
-        return <h1>Something Went Wrong</h1>;
+        return <h1 className="text-center text-3xl font-bold text-red-900">Something Went Wrong</h1>;
     }
 
     console.log(category);
