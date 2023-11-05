@@ -50,6 +50,7 @@ const BidRequest = () => {
             });
         }
     };
+    
     const handleAccept = async (id, updatedBid) => {
         console.log('Reject clicked for bid with ID:', id);
         console.log(updatedBid);
@@ -60,7 +61,7 @@ const BidRequest = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'Bid Rejected!',
-                text: 'The bid has been successfully rejected.',
+                text: 'The bid has been successfully Accepted.',
             });
         } else {
             Swal.fire({
