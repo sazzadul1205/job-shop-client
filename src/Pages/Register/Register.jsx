@@ -40,7 +40,6 @@ const Register = () => {
                 axios.post('/auth/access-token', { email: res.user.email })
                     .then(tokenResponse => {
                         const token = tokenResponse.data;
-                        navigate(location?.state ? location.state : '/')
                         console.log(token);
                         Swal.fire({
                             icon: 'success',
@@ -59,7 +58,7 @@ const Register = () => {
                 updateUser(displayName, photoURL)
                     .then(updateResponse => {
                         console.log(updateResponse);
-                        navigate(location?.state ? location.state : "/");
+                        navigate(location?.state ? location?.state?.from?.pathname : '/')
                         Swal.fire({
                             icon: 'success',
                             title: 'Registration Successful',

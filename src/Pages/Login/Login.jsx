@@ -10,9 +10,10 @@ document.title = 'Job Shop || LogIn'
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { user, singIn, signInWithGoogle, logOut } = useContext(AuthContext);
+    const { singIn, signInWithGoogle, logOut } = useContext(AuthContext);
     const [loginError, setLoginError] = useState(null);
     const axios = useAxios()
+
 
 
     const handleLogin = e => {
@@ -29,11 +30,12 @@ const Login = () => {
                     lastLoggedAt: res.user?.metadata?.lastSignInTime,
                 };
                 console.log(user.email);
-
                 axios.post('/auth/access-token', { email: user.email })
                     .then(token => {
+
                         if (res.data.success)
-                            navigate(location?.state ? location.state : '/')
+                            console.log(location);
+                        navigate(location?.state ? location?.state?.from?.pathname : '/')
                         console.log(token);
                         Swal.fire({
                             icon: 'success',
@@ -67,10 +69,10 @@ const Login = () => {
         signInWithGoogle()
             .then(res => {
                 console.log(res.user.email);
-                // navigate(location?.state ? location.state : '/');
                 axios.post('/auth/access-token', { email: res.user.email })
                     .then(token => {
-                        navigate(location?.state ? location.state : '/')
+                        console.log(location.state.from.pathname);
+                        navigate(location?.state ? location?.state?.from?.pathname : '/')
                         console.log(token);
                         Swal.fire({
                             icon: 'success',
@@ -101,7 +103,6 @@ const Login = () => {
 
             });
     }
-    console.log(user);
     const websiteName = 'Job Shop || Login';
 
     return (

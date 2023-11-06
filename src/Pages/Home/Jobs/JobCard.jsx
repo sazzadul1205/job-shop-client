@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 const JobCard = ({ job }) => {
@@ -11,10 +10,12 @@ const JobCard = ({ job }) => {
                     {title}
                 </div>
                 <p className="text-black font-bold text-sm mb-2">Job Deadline: {deadline}</p>
+                    I have some content in here
+                
                 <p className="text-black font-bold text-sm mb-4">
                     Price Range: ${minPrice} - ${maxPrice}
                 </p>
-                <p className="text-white text-base">{description}</p>
+                <p className="text-whi text-base">{description}</p>
                 <div className="mt-6">
                     <Link to={`/jobDetails/${_id}`}>
                         <button className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded">
