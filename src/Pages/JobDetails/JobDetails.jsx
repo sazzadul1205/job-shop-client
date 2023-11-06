@@ -50,7 +50,7 @@ const JobDetails = () => {
         <div className='bg-[#2C74B3]'>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="../../../public/jobdetails.png" />
+                <link rel="icon" type="image/png" href="/jobdetails.png" />
             </Helmet>
             <h1 className='text-center text-3xl font-bold italic pt-5'>~ Give your Bid ~</h1>
             {isSameEmail && (

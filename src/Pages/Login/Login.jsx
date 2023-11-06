@@ -109,7 +109,7 @@ const Login = () => {
         <div className="pk">
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="../../../public/login.png" />
+                <link rel="icon" type="image/png" href="/login.png" />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col">

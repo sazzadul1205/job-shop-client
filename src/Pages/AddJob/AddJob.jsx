@@ -82,7 +82,7 @@ const AddJob = () => {
         <div>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="../../../public/addJobs.png" />
+                <link rel="icon" type="image/png" href="/addJobs.png" />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col lg:flex-row">

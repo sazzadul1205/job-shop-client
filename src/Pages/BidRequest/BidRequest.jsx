@@ -78,7 +78,7 @@ const BidRequest = () => {
         <div>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="../../../public/bidRequest.jpeg" />
+                <link rel="icon" type="image/png" href="/bidRequest.jpeg" />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">

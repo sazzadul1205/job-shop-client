@@ -12,7 +12,7 @@ const Home = () => {
             <div>
                 <Helmet>
                     <title>{websiteName}</title>
-                    <link rel="icon" type="image/png" href="../../../../public/job-icon.png" />
+                    <link rel="icon" type="image/png" href="/job-icon.png" />
                 </Helmet>
                 <img src={'https://i.ibb.co/mJCjDGh/banner.png'} alt="" />
                 <Jobs />
