@@ -1,3 +1,7 @@
+# Job Shop - Website Link
+
+    https://job-shop-a7d92.web.app
+
 # Job Shop - Client-Side
 
 This is the client-side repository for the Job Shop application, a platform that connects job seekers with employers looking to hire for various positions. It allows users to post job listings, search for available jobs, and submit applications for desired positions.
