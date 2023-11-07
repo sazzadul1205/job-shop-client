@@ -1,30 +1,38 @@
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 const JobCard = ({ job }) => {
     const { _id, title, deadline, description, maxPrice, minPrice } = job;
 
     return (
-        <div className="max-w-md mx-auto bg-[#144272] rounded-xl shadow-md overflow-hidden m-4 text-left">
-            <div className="p-8">
-                <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-2">
-                    {title}
-                </div>
-                <p className="text-black font-bold text-sm mb-2">Job Deadline: {deadline}</p>
+        <>
+            <motion.div
+                className="max-w-md mx-auto bg-[#144272] rounded-xl shadow-md overflow-hidden m-4 text-left"
+                whileHover={{ scale: [null, 1.2, 1.2] }}
+                transition={{ duration: 0.3 }}
+            >
+                <div className="p-8">
+                    <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold mb-2">
+                        {title}
+                    </div>
+                    <p className="text-black font-bold text-sm mb-2">Job Deadline: {deadline}</p>
                     I have some content in here
-                
-                <p className="text-black font-bold text-sm mb-4">
-                    Price Range: ${minPrice} - ${maxPrice}
-                </p>
-                <p className="text-whi text-base">{description}</p>
-                <div className="mt-6">
-                    <Link to={`/jobDetails/${_id}`}>
-                        <button className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded">
-                            Bid Now
-                        </button>
-                    </Link>
+
+                    <p className="text-black font-bold text-sm mb-4">
+                        Price Range: ${minPrice} - ${maxPrice}
+                    </p>
+                    <p className="text-whi text-base">{description}</p>
+                    <div className="mt-6">
+                        <Link to={`/jobDetails/${_id}`}>
+                            <button className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded">
+                                Bid Now
+                            </button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+            </motion.div>
+        </>
     );
 };
 

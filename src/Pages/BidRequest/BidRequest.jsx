@@ -78,12 +78,12 @@ const BidRequest = () => {
         <div>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="/bidRequest.jpeg" />
+                <link rel="icon" type="image/png" href={'https://i.ibb.co/NtCMt4G/bid-Request.jpg'} />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">
                     <div>
-                        <h1 className="text-3xl font-3xl italic text-center mb-5">~ My Bids ~</h1>
+                        <h1 className="text-3xl font-3xl italic text-center mb-5">~ My Bid Request ~</h1>
                         <p className='text-center'>My bids: {data?.length}</p>
                     </div>
                     <div className="overflow-x-auto">

@@ -34,10 +34,10 @@ const MyJobs = () => {
         <div className="bg-[#2C74B3] min-h-screen">
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="/myjobs.png" />
+                <link rel="icon" type="image/png" href={'https://i.ibb.co/6HvkMv7/myjobs.png'} />
             </Helmet>
             <h1 className="text-center text-3xl font bold pt-3">~ MyJobs ~</h1>
-            <div className=" mt-5">
+            <div className=" mt-5 ">
                 {
                     jobs?.data.map(job => (
                         <MyJobCard

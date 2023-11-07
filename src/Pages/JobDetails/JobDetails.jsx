@@ -16,41 +16,57 @@ const JobDetails = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleBidSubmission = async (e) => {
-        e.preventDefault();
-        const form = new FormData(e.currentTarget);
-        const Bid = form.get('Bid');
-        const bidderDeadline = form.get('bidderDeadline');
-        const status = 'pending';
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const Bid = form.get('Bid');
+    const bidderDeadline = form.get('bidderDeadline');
+    const status = 'pending';
 
-        const bid = {
-            Bid,
-            bidderDeadline,
-            bidderEmail: user?.email,
-            sellerEmail: email,
-            title,
-            maxPrice,
-            minPrice,
-            status,
-        };
-        console.log(bid);
-        const res = await axios.post('/bids/add-new-bid', bid);
-        console.log('Bid successfully sent', res?.data);
-        if (res.status === 200) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Success!',
-                text: 'Your bid has been successfully submitted.',
-            });
-            setIsSubmitted(true);
-            window.location.href = '/myBids'; 
-        }
+    // Check if the deadline is today or earlier
+    const today = new Date();
+    const selectedDeadline = new Date(bidderDeadline);
+    const isDeadlinePassed = selectedDeadline <= today;
+
+    if (isDeadlinePassed) {
+        // Show an error message or notification here
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'The deadline has passed. Cannot submit the bid.',
+        });
+        return;
+    }
+
+    const bid = {
+        Bid,
+        bidderDeadline,
+        bidderEmail: user?.email,
+        sellerEmail: email,
+        title,
+        maxPrice,
+        minPrice,
+        status,
     };
+    console.log(bid);
+    const res = await axios.post('/bids/add-new-bid', bid);
+    console.log('Bid successfully sent', res?.data);
+    if (res.status === 200) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Your bid has been successfully submitted.',
+        });
+        setIsSubmitted(true);
+        window.location.href = '/myBids';
+    }
+};
+
     const websiteName = 'Job Shop || Jobs Details';
     return (
         <div className='bg-[#2C74B3]'>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="/jobdetails.png" />
+                <link rel="icon" type="image/png" href={'https://i.ibb.co/SVKz1x9/jobdetails.png'} />
             </Helmet>
             <h1 className='text-center text-3xl font-bold italic pt-5'>~ Give your Bid ~</h1>
             {isSameEmail && (

@@ -83,7 +83,7 @@ const UpdateJobs = () => {
         <div>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="/updateJobs.webp" />
+                <link rel="icon" type="image/png" href={'https://i.ibb.co/MDdY4Dj/update-Jobs.webp'} />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">

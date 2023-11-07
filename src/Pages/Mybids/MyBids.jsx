@@ -51,7 +51,7 @@ const MyBids = () => {
         <div>
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="/myBid.png" />
+                <link rel="icon" type="image/png" href={'https://i.ibb.co/XpcBgCh/myBid.png'} />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col ">

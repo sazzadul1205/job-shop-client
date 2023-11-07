@@ -68,10 +68,11 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(res => {
-                console.log(res.user.email);
+                console.log('gggol',res.user.email);
                 axios.post('/auth/access-token', { email: res.user.email })
                     .then(token => {
                         console.log(location.state.from.pathname);
+                        
                         navigate(location?.state ? location?.state?.from?.pathname : '/')
                         console.log(token);
                         Swal.fire({
@@ -109,7 +110,7 @@ const Login = () => {
         <div className="pk">
             <Helmet>
                 <title>{websiteName}</title>
-                <link rel="icon" type="image/png" href="/login.png" />
+                <link rel="icon" type="image/png" href={'https://i.ibb.co/JzYx8vD/login.png'} />
             </Helmet>
             <div className="hero min-h-screen py-10 bg-[#2C74B3]">
                 <div className="hero-content flex-col">
