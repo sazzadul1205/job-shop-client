@@ -5,6 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import JobCard from "../Home/Jobs/JobCard";
 import { PiWarningCircleBold } from "react-icons/pi";
+import { motion } from "framer-motion";
+
+// i tried my bes without help but the pagination may have some conflict with the search function so after 12 hr of work i give up
 
 const SearchJobs = () => {
     const axios = useAxios();
@@ -63,17 +66,26 @@ const SearchJobs = () => {
     return (
         <div>
             <div className="flex items-center justify-center py-5 bg-[#205295] relative">
-                <div className="flex">
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        className="input w-full max-w-xs"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <button className="p-3 bg-red-600 hover:bg-red-600 rounded-r-xl" onClick={handleSearch}>
-                        <AiOutlineSearch />
-                    </button>
+                <div className="flex flex-col items-center">
+                    <div className="flex">
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            className="input w-full max-w-xs rounded-l-xl"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className="p-3 bg-red-600 hover:bg-red-700 rounded-r-xl flex items-center"
+                            onClick={handleSearch}
+                        >
+                            <AiOutlineSearch className="text-white" />
+                        </motion.button>
+                    </div>
+                    <h1 className="text-3xl font-semibold my-2 italic text-blue-800">Find Your Dream Job Here</h1>
+                    <p className="text-xl my-1 italic text-blue-200 mx-40 text-center">Discover exciting job opportunities that match your skills and aspirations. Let us help you find the perfect career path to achieve your professional goals.</p>
                 </div>
             </div>
             <div className="bg-[#205295]">
