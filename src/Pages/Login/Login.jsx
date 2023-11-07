@@ -16,94 +16,87 @@ const Login = () => {
 
 
 
-    const handleLogin = e => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
         const form = new FormData(e.currentTarget);
         const email = form.get('email');
         const password = form.get('password');
 
-        singIn(email, password)
-            .then(res => {
-                const user = {
-                    email: email,
-                    lastLoggedAt: res.user?.metadata?.lastSignInTime,
-                };
-                console.log(user.email);
-                axios.post('/auth/access-token', { email: user.email })
-                    .then(token => {
-
-                        if (res.data.success)
-                            console.log(location);
-                        navigate(location?.state ? location?.state?.from?.pathname : '/')
-                        console.log(token);
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'Login successful!',
-                        });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        setLoginError("Failed to generate access token. Please try again.");
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Failed to generate access token. Please try again.',
-                        });
+        try {
+            const res = await singIn(email, password);
+            const user = {
+                email: email,
+                lastLoggedAt: res.user?.metadata?.lastSignInTime,
+            };
+            console.log(user.email);
+            try {
+                const token = await axios.post('/auth/access-token', { email: user.email });
+                if (token.data.success) {
+                    console.log(location);
+                    navigate(location?.state ? location?.state?.from?.pathname : '/');
+                    console.log(token);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Login successful!',
                     });
-
-            })
-            .catch(error => {
+                }
+            } catch (error) {
                 console.error(error);
-                setLoginError("Invalid email or password. Please try again.");
+                setLoginError("Failed to generate access token. Please try again.");
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Invalid email or password. Please try again.',
+                    text: 'Failed to generate access token. Please try again.',
                 });
+            }
+        } catch (error) {
+            console.error(error);
+            setLoginError("Invalid email or password. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Invalid email or password. Please try again.',
             });
+        }
     };
 
-    const handleGoogleSignIn = () => {
-        signInWithGoogle()
-            .then(res => {
-                console.log('gggol',res.user.email);
-                axios.post('/auth/access-token', { email: res.user.email })
-                    .then(token => {
-                        console.log(location.state.from.pathname);
-                        
-                        navigate(location?.state ? location?.state?.from?.pathname : '/')
-                        console.log(token);
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: 'Login successful!',
-                        });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        logOut()
-                        setLoginError("Failed to generate access token. Please try again.");
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Failed to generate access token. Please try again.',
-                        });
-                    });
-
-            })
-            .catch(error => {
+    const handleGoogleSignIn = async () => {
+        try {
+            const res = await signInWithGoogle();
+            console.log( res.user.email);
+            try {
+                const token = await axios.post('/auth/access-token', { email: res.user.email });
+                console.log(location);
+                navigate(location?.state ? location?.state?.from?.pathname : '/');
+                console.log(token);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Login successful!',
+                });
+            } catch (error) {
                 console.error(error);
-                setLoginError("Google sign-in error. Please try again.");
+                logOut();
+                setLoginError("Failed to generate access token. Please try again.");
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Google sign-in error. Please try again.'
+                    text: 'Failed to generate access token. Please try again.',
                 });
-
+            }
+        } catch (error) {
+            console.error(error);
+            setLoginError("Google sign-in error. Please try again.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Google sign-in error. Please try again.'
             });
+        }
     }
+
     const websiteName = 'Job Shop || Login';
 
     return (

@@ -115,6 +115,7 @@ const AddJob = () => {
                                     name="title"
                                     placeholder="Job Title"
                                     className="input input-bordered"
+                                    required
                                 />
                             </div>
                             <div className="form-control">
@@ -127,6 +128,7 @@ const AddJob = () => {
                                     placeholder="Job Deadline"
                                     className="input input-bordered"
                                     onChange={handleDeadlineChange}
+                                    required
                                 />
                             </div>
                             <div className="form-control">
@@ -150,6 +152,7 @@ const AddJob = () => {
                                     placeholder="Job Minimum Price"
                                     className="input input-bordered"
                                     onChange={handlePriceChange}
+                                    required
                                 />
                             </div>
                             <div className="form-control">

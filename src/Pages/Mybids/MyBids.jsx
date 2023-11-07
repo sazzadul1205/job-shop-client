@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { useContext } from 'react';
 import { Helmet } from 'react-helmet';
+import { PiWarningCircleBold } from 'react-icons/pi';
 
 const MyBids = () => {
     const axios = useAxios();
@@ -27,7 +28,13 @@ const MyBids = () => {
         return <div className='mx-auto justify-center'><Loader /></div>;
     }
     if (isError) {
-        return <h1 className="text-center text-3xl font-bold text-red-900">Something Went Wrong</h1>;
+        return (
+            <div className='py-10 bg-[#205295]'>
+                <PiWarningCircleBold className="mx-auto text-8xl"></PiWarningCircleBold>
+                <p className='text-center text-3xl font-bold text-red-900 italic'>Oops!</p>
+                <h1 className="text-center text-3xl font-bold text-red-900 italic">Something Went Wrong</h1>
+            </div>
+        );
     }
     const data = bids?.data;
     console.log(data);

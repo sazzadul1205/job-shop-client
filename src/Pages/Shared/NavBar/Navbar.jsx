@@ -1,16 +1,8 @@
-import { motion } from "framer-motion";
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
-const variants = {
-  open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
-  },
-  closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 }
-  }
-};
+
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -43,21 +35,12 @@ const Navbar = () => {
             <div className="navbar bg-[#87C4FF] pt-4">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <motion.label 
-                          variants={variants}
-                          initial="closed"
-                          whileHover="open"
-                          tabIndex={0} 
-                          className="btn btn-ghost lg:hidden text-black">
+                        <label tabIndex={0} className="btn btn-ghost lg:hidden text-black">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <motion.path 
-                                  variants={variants}
-                                  initial="closed"
-                                  whileHover="open"
-                                  strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
 
-                        </motion.label>
+                        </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             {links}
                         </ul>

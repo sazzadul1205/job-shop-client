@@ -6,6 +6,7 @@ import Loader from "../../Loader/Loader";
 import BidRequestRow from "./BidRequestRow";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import { PiWarningCircleBold } from "react-icons/pi";
 
 const BidRequest = () => {
     const axios = useAxios();
@@ -25,7 +26,14 @@ const BidRequest = () => {
         return <div className='mx-auto justify-center'><Loader /></div>;
     }
     if (isError) {
-        return <h1 className="text-center text-3xl font-bold text-red-900">Something Went Wrong</h1>;
+        return (
+            <div className='py-10 bg-[#205295]'>
+                <PiWarningCircleBold className="mx-auto text-8xl"></PiWarningCircleBold>
+                <p className='text-center text-3xl font-bold text-red-900 italic'>Oops!</p>
+                <h1 className="text-center text-3xl font-bold text-red-900 italic">Something Went Wrong</h1>
+            </div>
+            
+        );
     }
 
     const data = bids?.data;
@@ -51,7 +59,7 @@ const BidRequest = () => {
             });
         }
     };
-    
+
     const handleAccept = async (id, updatedBid) => {
         console.log('Reject clicked for bid with ID:', id);
         console.log(updatedBid);

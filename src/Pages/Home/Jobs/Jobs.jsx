@@ -1,3 +1,4 @@
+import { PiWarningCircleBold } from "react-icons/pi";
 import { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -35,7 +36,13 @@ const Jobs = () => {
         return <div className='mx-auto justify-center'><Loader /></div>;
     }
     if (isError) {
-        return <h1 className="text-center text-3xl font-bold text-red-900">Something Went Wrong</h1>;
+        return (
+            <div className='py-10 bg-[#205295]'>
+                    <PiWarningCircleBold className="mx-auto text-8xl"></PiWarningCircleBold>
+                    <p className='text-center text-3xl font-bold text-red-900 italic'>Oops!</p>
+                    <h1 className="text-center text-3xl font-bold text-red-900 italic">Something Went Wrong</h1>
+                </div>
+        );
     }
 
     console.log(category);
@@ -79,9 +86,11 @@ const Jobs = () => {
                     </Tabs>
                 </div>
             </div>
+            
         </div>
 
     );
 };
 
 export default Jobs;
+
