@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import JobCard from "../Home/Jobs/JobCard";
 import { PiWarningCircleBold } from "react-icons/pi";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
 
 // i tried my bes without help but the pagination may have some conflict with the search function so after 12 hr of work i give up
 
@@ -62,9 +63,14 @@ const SearchJobs = () => {
     };
 
     const totalPages = Math.ceil(jobs?.data?.length / limit);
+    const websiteName = 'Job Shop || Search Jobs';
 
     return (
         <div>
+            <Helmet>
+                <title>{websiteName}</title>
+                <link rel="icon" type="image/png" href={''} />
+            </Helmet>
             <div className="flex items-center justify-center py-5 bg-[#205295] relative">
                 <div className="flex flex-col items-center">
                     <div className="flex">
