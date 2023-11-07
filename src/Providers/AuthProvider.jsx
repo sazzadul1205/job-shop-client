@@ -46,13 +46,13 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             // if the user exists then issue a token
             if (currentUser) {
-                axios.post('http://localhost:5000/api/v1/auth/access-token', loggedUser, { withCredentials: true })
+                axios.post('https://job-shop-server.vercel.app/api/v1/auth/access-token', loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log('token response', res.data);
                     })
             }
             else {
-                axios.post('http://localhost:5000/api/v1/auth/logout', loggedUser, { withCredentials: true })
+                axios.post('https://job-shop-server.vercel.app/api/v1/auth/logout', loggedUser, { withCredentials: true })
                     .then(res => {
                         console.log('token logout', res.data);
                     })
