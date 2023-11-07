@@ -25,6 +25,7 @@ const Navbar = () => {
                 <li className="text-md"><NavLink to={'/myJobs'}>My Posted job</NavLink></li>
                 <li className="text-md"><NavLink to={'/myBids'}>My Bids</NavLink></li>
                 <li className="text-md"><NavLink to={'/bidRequest'}>Bid Request</NavLink></li>
+                <li className="text-md"><NavLink to={'/searchJobs'}>Search Job</NavLink></li>
             </>
 
         </>

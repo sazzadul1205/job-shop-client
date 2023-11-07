@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import auth from '../Firebase/firebase.config'
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 const googleProvider = new GoogleAuthProvider()
@@ -15,14 +16,14 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const updateUser = ( displayName, photoURL) => {
+    const updateUser = (displayName, photoURL) => {
         setLoading(true);
-        return updateProfile(auth.currentUser, {displayName: displayName, photoURL: photoURL})
+        return updateProfile(auth.currentUser, { displayName: displayName, photoURL: photoURL })
     }
 
     const singIn = (email, password) => {
         setLoading(true)
-        
+
         return signInWithEmailAndPassword(auth, email, password);
 
     }
@@ -37,16 +38,31 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log('user in the current auth state changed', currentUser);
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
             setUser(currentUser);
-            setLoading(false)
+            console.log('your Current user Is: ', currentUser);
+            setLoading(false);
+            // if the user exists then issue a token
+            if (currentUser) {
+                axios.post('http://localhost:5000/api/v1/auth/access-token', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token response', res.data);
+                    })
+            }
+            else {
+                axios.post('http://localhost:5000/api/v1/auth/logout', loggedUser, { withCredentials: true })
+                    .then(res => {
+                        console.log('token logout', res.data);
+                    })
+            }
         })
-        return () => { unSubscribe(); }
+        return () => { return unsubscribe() }
     }, [])
 
     const authInfo = {
-        user, loading, createUser, logOut, singIn, signInWithGoogle,updateUser
+        user, loading, createUser, logOut, singIn, signInWithGoogle, updateUser
     }
 
 

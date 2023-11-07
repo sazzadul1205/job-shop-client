@@ -16,17 +16,19 @@ const JobCard = ({ job }) => {
                         {title}
                     </div>
                     <p className="text-black font-bold text-sm mb-2">Job Deadline: {deadline}</p>
-                    I have some content in here
-
                     <p className="text-black font-bold text-sm mb-4">
                         Price Range: ${minPrice} - ${maxPrice}
                     </p>
                     <p className="text-whi text-base">{description}</p>
                     <div className="mt-6">
                         <Link to={`/jobDetails/${_id}`}>
-                            <button className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded">
+                            <motion.button
+                                whileHover={{ scale: 1.2 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="bg-blue-500 hover:bg-[#2C74B3] text-white font-bold py-2 px-8 rounded-xl"
+                            >
                                 Bid Now
-                            </button>
+                            </motion.button>
                         </Link>
                     </div>
                 </div>
