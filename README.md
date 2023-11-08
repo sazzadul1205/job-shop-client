@@ -1,6 +1,6 @@
 # Job Shop - Website Link
 
-    https://job-shop-a7d92.web.app
+https://job-shop-a7d92.web.app
 
 # Job Shop - Client-Side
 
